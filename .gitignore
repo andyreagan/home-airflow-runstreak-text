@@ -1,0 +1,7 @@
+logs/
+*.pid
+*.err
+*.log
+*.out
+airflow.db
+__pycache__/
