@@ -3,15 +3,12 @@ import datetime as dt
 import os
 from math import floor
 
-# import click
+import pendulum
 import requests
+from airflow import DAG
+from airflow.operators.python import PythonOperator
 from dotenv import find_dotenv, load_dotenv
 from stravalib import Client
-import pendulum
-
-from airflow import DAG
-# from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator
 
 load_dotenv(find_dotenv(".env"))
 
@@ -42,7 +39,7 @@ def has_run_today(execution_date):
     # the default time zone to set to is the system local timezone
     # now = execution_date.astimezone()
     # airflow uses pendulum, so the above would work, but explicit over default:
-    now = execution_date.astimezone(pendulum.timezone('EST'))
+    now = execution_date.astimezone(pendulum.timezone("EST"))
     LOGGER.info(f"{now=}")
     client = Client()
 
